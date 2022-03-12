@@ -1,0 +1,31 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: managercv-service
+spec:
+  selector:
+    app: managercv-app
+  ports:
+    - protocol: 'TCP'
+      port: 8080
+      targetPort: 8080
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: managercv-app-deployment
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: managercv-app
+  template:
+    metadata:
+      labels:
+        app: managercv-app
+    spec:
+      containers:
+        - name: managercv
+          image: andrericardoalves/managercv-project:latest

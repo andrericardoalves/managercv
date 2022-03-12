@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: managercv-app-deployment
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: managercv-app
+  template:
+    metadata:
+      labels:
+        app: managercv-app
+    spec:
+      containers:
+        - name: managercv
+          image: andrericardoalves/managercv-project:latest
